@@ -1,7 +1,3 @@
---[[
-  Full credits to Dino#3523 for the original library
-]]
-
 -- init
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
@@ -30,6 +26,7 @@ do
 	function utility:Create(instance, properties, children)
 		local object = Instance.new(instance)
 		if instance == "ScreenGui" then
+			print("Protecting UI")
 			syn.protect_gui(object)
 		end
 		for i, v in pairs(properties or {}) do
@@ -790,10 +787,11 @@ do
 		toggle.MouseButton1Click:Connect(function()
 			local frame = toggle.Button.Frame
 			value = active and "Out" or "In"
-			if position[active] == frame.Position then
-				print("Correct position")
+			if position[active] ~= frame.Position then
+				print("Caught incorrect toggle value")
 				active = not active
 			end
+			active = not active
 			self:updateToggle(toggle, nil, active)
 			
 			if callback then
