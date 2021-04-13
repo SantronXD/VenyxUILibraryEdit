@@ -785,11 +785,13 @@ do
 		self:updateToggle(toggle, nil, active)
 		
 		toggle.MouseButton1Click:Connect(function()
+			local s,e = pcall(function()
 			if position[active and "Out" or "In"] ~= toggle.Button.Frame.Position then
 				print("Caught incorrect toggle value")
 				active = not active
 			end
 			active = not active
+			print(active)
 			self:updateToggle(toggle, nil, active)
 			
 			if callback then
@@ -798,7 +800,8 @@ do
 				end)
 			end
 		end)
-		
+		end)
+		if not s then warn(e) end
 		return toggle
 	end
 	
