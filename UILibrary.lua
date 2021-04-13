@@ -786,6 +786,8 @@ do
 		
 		toggle.MouseButton1Click:Connect(function()
 			local s,e = pcall(function()
+			print(toggle.Button.Frame.Position)
+			print(position[active and "Out", or "In"])
 			if position[active and "Out" or "In"] ~= toggle.Button.Frame.Position then
 				print("Caught incorrect toggle value")
 				active = not active
