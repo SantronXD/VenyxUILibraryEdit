@@ -785,9 +785,7 @@ do
 		self:updateToggle(toggle, nil, active)
 		
 		toggle.MouseButton1Click:Connect(function()
-			local frame = toggle.Button.Frame
-			value = active and "Out" or "In"
-			if position[active] ~= frame.Position then
+			if position[active and "Out" or "In"] ~= toggle.Button.Frame.Position then
 				print("Caught incorrect toggle value")
 				active = not active
 			end
