@@ -19,14 +19,13 @@ local themes = {
 	Accent = Color3.fromRGB(10, 10, 10), 
 	LightContrast = Color3.fromRGB(20, 20, 20), 
 	DarkContrast = Color3.fromRGB(14, 14, 14),  
-	TextColor = Color3.fromRGB(255, 255, 255)
+	TextColor = Color3.fromRGB(34, 55, 201)
 }
 
 do
 	function utility:Create(instance, properties, children)
 		local object = Instance.new(instance)
 		if instance == "ScreenGui" then
-			print("Protecting UI")
 			syn.protect_gui(object)
 		end
 		for i, v in pairs(properties or {}) do
@@ -1978,12 +1977,12 @@ do
 		}
 		
 		local frame = toggle.Button.Frame
+		Color = value and Color3.new(0,1,0) or Color3.new(0.3,0,0)
 		value = value and "Out" or "In"
-		
 		if title then
 			toggle.Title.Text = title
 		end
-		
+		frame.ImageColor3 = Color
 		utility:Tween(frame, {
 			Size = UDim2.new(1, -22, 1, -9),
 			Position = position[value] + UDim2.new(0, 0, 0, 2.5)
