@@ -30,7 +30,7 @@ do
 				if syn then
 					syn.protect_gui(object)
 					object[i] = v
-				elseif gethui then
+				elseif gethui then --BALLS
 					object[i] = gethui()
 				end
 				continue
