@@ -25,12 +25,18 @@ local themes = {
 do
 	function utility:Create(instance, properties, children)
 		local object = Instance.new(instance)
-		if instance == "ScreenGui" then
-			syn.protect_gui(object)
-		end
 		for i, v in pairs(properties or {}) do
+			if i == "Parent" and instance == "ScreenGui" then
+				if syn then
+					syn.protect_gui(object)
+					object[i] = v
+				elseif gethui then
+					object[i] = gethui()
+				end
+				continue
+			end
 			object[i] = v
-			
+
 			if typeof(v) == "Color3" then -- save for theme changer later
 				local theme = utility:Find(themes, v)
 				
