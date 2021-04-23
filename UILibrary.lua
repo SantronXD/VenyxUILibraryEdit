@@ -27,10 +27,11 @@ do
 		local object = Instance.new(instance)
 		for i, v in pairs(properties or {}) do
 			if i == "Parent" and instance == "ScreenGui" then
+				local gethui = gethui or get_hidden_gui
 				if syn then
 					syn.protect_gui(object)
 					object[i] = v
-				elseif gethui then --BALLS
+				elseif gethui then
 					object[i] = gethui()
 				end
 				continue
